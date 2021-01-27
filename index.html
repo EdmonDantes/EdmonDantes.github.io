@@ -1,0 +1,54 @@
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="data/date-ru-RU.js"></script>
+	<script type="text/javascript">
+	
+		function getStartDate() {
+			try {
+				return Date.parse(prompt("Пожалуйста введите известную дату знаменателя или числителя", "25.01.2021"))
+			} catch (err) {
+				alert("Неправильный формат даты: 'число.месяц.год' (пример 01.01.2000)")
+				return getStartDate()
+			}
+		}
+		
+		function getTypeDate() {
+			switch (prompt("Знаменатель (з) или числитель (ч)?", "з").toLowerCase()) {
+				case 'з':
+					return 0;
+				case 'ч':
+					return 1;
+				default:
+					alert("Вы можете ввести только 'з' или 'ч'")
+					return getTypeDate()
+			}
+		}
+		
+		function getEndDate() {
+			try {
+				return Date.parse(prompt("Пожалуйста введите дату для которой хотите узнать числитель или знаменатель", Date.today().toString("dd.MM.yyyy")))
+			} catch (err) {
+				alert("Неправильный формат даты: 'число.месяц.год' (пример 01.01.2000)")
+				return getEndDate()
+			}
+		}
+		
+		
+		var startDate = getStartDate()
+		var type = getTypeDate()
+		
+		if (!startDate.is().mon()) {
+			startDate = startDate.last().mon()
+		}
+		
+		var count = startDate.getElapsed(getEndDate().last().mon()) / 1000 / 3600 / 24 / 7
+		if (count % 2 == 0) {
+			document.write(type == 0 ? "Знаменатель" : "Числитель")
+		} else {
+			document.write(type == 1 ? "Знаменатель" : "Числитель")
+		}
+	</script>
+</head>
+<body>
+	
+</body>
