@@ -2,8 +2,8 @@
 name: CI
 
 on:
-  schedule:
-    - cron:  '* * * * *'
+  workflow_dispatch:
+  
 jobs:
   refresh:
     runs-on: ubuntu-latest
