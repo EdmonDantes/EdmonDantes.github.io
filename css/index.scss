@@ -34,6 +34,7 @@ $accent-color-text: #000;
   margin-top: 10%;
   padding: 25px;
   width: 30%;
+  min-width: 250px;
   margin-left: auto;
   margin-right: auto;
   @extend .col, .offset-xl4, .xl4, .offset-l4, .l4, .offset-m3, .m6, .offset-s3, .s6, .z-depth-5, .primary-color
@@ -70,6 +71,7 @@ body::before {
 
 .modal {
   &.small {
+    min-width: 250px;
     width: 25% !important;
   }
 }
