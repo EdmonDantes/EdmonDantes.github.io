@@ -1,181 +1,73 @@
 <head>
-	<meta charset="utf-8">
-	<title>Знаменатель или числитель</title>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.light_green-teal.min.css" />
-	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-	
-	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
-	
-	<script type="text/javascript" src="data/date-ru-RU.js"></script>
-	<script type="text/javascript">
-	
-		function getStartDate() {	
-			try {
-				return Date.parse(document.getElementById('start_date_input').value)
-			} catch (err) {
-				createErrorDialog()
-			}
-		}
-		
-		function getEndDate() {
-			try {
-				return Date.parse(document.getElementById('unknown_date_input').value)
-			} catch (err) {
-				createErrorDialog()
-			}
-		}
-		
-		function getTypeDate() {
-			return document.getElementById('radio_button_list_item_1').checked ? 0 : 1
-		}
-		
-		function createDialog(id, setupFunc) {
-			var dialog = document.getElementById(id)
-			if (!dialog) {
-				return false
-			}
-			
-			if(!dialog.showModal) {
-				dialogPolyfill.registerDialog(dialog)
-			}
-			
-			if (setupFunc) {
-				setupFunc(dialog)
-			}
-			
-			var closeButton = dialog.querySelector('.close')
-			if (closeButton) {
-				closeButton.addEventListener('click', function() { dialog.close() })
-			}
-			
-			dialog.showModal()
-		}
-		
-		function createErrorDialog() {
-			createDialog('date_error_dialog')
-		}
-		
-		function start() {
-			var startDate = getStartDate()
-			var type = getTypeDate()
-			
-			if (!startDate.is().mon()) {
-				startDate = startDate.last().mon()
-			}
-			
-			var endDate = getEndDate().last().mon()
-			if (!endDate.is().mon()) {
-				endDate = endDate.last().mon()
-			}
-			
-			var count = startDate.getElapsed(endDate) / 1000 / 3600 / 24 / 7
-			
-			var text;
-			
-			if (count % 2 == 0) {
-				text = type == 0 ? "Знаменатель" : "Числитель"
-			} else {
-				text = type == 1 ? "Знаменатель" : "Числитель"
-			}
-			
-			createDialog('result_dialog', function(dialog) {document.getElementById("text").innerHTML = text});
-		}
-		
-		
-		function setup() {
-			document.getElementById('unknown_date_input').value = Date.today().toString("yyyy-MM-dd");			
-		}
-		
-		
-		
-		
-		window.onload = setup
-	</script>
-	<style>
-		.date_picker {
-			
-			width: 250px;
-			height: 40px;
-		}
-		.execute_button {
-			width: 250px;
-			margin-top: 25px;
-		}
-		.bordered {
-			border-radius: 5px;
-			border: 2px solid rgb(139,195,74);
-			padding: 1px;
-		}
-		body {
-			margin-left: auto;
-			margin-right: auto;
-			width: 250px;
-		}
-	</style>
+    <meta charset="utf-8">
+    <title>Знаменатель или числитель</title>
+
+
+    <!--	Material-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--	Work with date-->
+    <script type="text/javascript" src="data/date-ru-RU.js"></script>
+
+    <!--	Main script-->
+    <script type="text/javascript" src="js/index.js"></script>
+    <link rel="stylesheet" href="css/index.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-	<div id="root_layout">	
-		<h5>Начальная дата:</h5>
-		
-		<div class="date_picker_layout bordered">
-			<input class="mdl-button date_picker" type="date" id="start_date_input" value="2021-01-25"/>
-		</div>
-		
-		<ul class="mdl-list bordered">
-			<li class="mdl-list__item">
-				<span class="mdl-list__item-primary-content">
-					Знаменатель
-				</span>
-				<span class="mdl-list__item-secondary-action">
-					<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio_button_list_item_1">
-						<input type="radio" id="radio_button_list_item_1" class="mdl-radio__button" name="chooseType" value="1" checked />
-					</label>
-				<span/>
-			</li>
-			<li class="mdl-list__item">
-				<span class="mdl-list__item-primary-content">
-					Числитель
-				</span>
-				<span class="mdl-list__item-secondary-action">
-					<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="radio_button_list_item_2">
-						<input type="radio" id="radio_button_list_item_2" class="mdl-radio__button" name="chooseType" value="2" />
-					</label>
-				<span/>
-			</li>
-		</ul>
-		
-		<h5>Дата поиска:</h5>
-		
-		<div class="date_picker_layout bordered">
-			<input class="mdl-button date_picker" type="date" id="unknown_date_input"/>
-		</div>
-		
-		<button id="execute_button" onclick="start()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary execute_button">
-			Рассчитать
-		</button>
-	</div>
-	
-	
-	<dialog id="date_error_dialog" class="mdl-dialog">
-		<h5 class="mdl-dialog__title">Ошибка</h5>
-		<div class="mdl-dialog__content">
-			Неправильно указана начальная дата или дата поиска
-		</div>
-		<div class="mdl-dialog__actions">
-			<button type="button" class="mdl-button close">OK</button>
-		</div>
-	</dialog>
-	
-	
-	<dialog id="result_dialog" class="mdl-dialog">
-		<h5 class="mdl-dialog__title">Результат</h5>
-		<h5 id="text" class="mdl-dialog__content">
-			ERROR
-		</h5>
-		<div class="mdl-dialog__actions">
-			<button type="button" class="mdl-button close">OK</button>
-		</div>
-	</dialog>
+
+<div class="section root-layout">
+        <div class="container">
+            <div class="container center">
+                <label for="start_date_input" class="flow-text primary-color">Начальная дата:</label>
+                <input type="text" id="start_date_input" class="datepicker primary-color"/>
+            </div>
+
+            <div class="section center">
+                <label>
+                    <input id="radio_button_list_item_1" name="chooseType" type="radio" checked/>
+                    <span class="flow-text primary-color">Знаменатель</span>
+                </label>
+                <label>
+                    <input name="chooseType" type="radio" class="green accent-1"/>
+                    <span class="flow-text primary-color">Числитель</span>
+                </label>
+            </div>
+
+            <div class="container center">
+                <label for="end_date_input" class="flow-text primary-color">Дата поиска:</label>
+                <input type="text" id="end_date_input" class="datepicker primary-color"/>
+            </div>
+
+            <div class="container center">
+                <button id="execute_button" class="btn" onclick="start()">Рассчитать</button>
+            </div>
+        </div>
+    </div>
+
+<div id="date_error_dialog" class="modal">
+    <div class="modal-content">
+        <h4>Ошибка</h4>
+        <p class="flow-text">Неправильно указана начальная дата или дата поиска</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
 </div>
+
+<div id="result_dialog" class="modal small">
+    <div class="modal-content">
+        <h4>Результат</h4>
+        <p class="flow-text" id="result_dialog_text">Dialog error. Please write issue to
+            https://github.com/EdmonDantes/EdmonDantes.github.io</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/materialize.min.js"></script>
 </body>

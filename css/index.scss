@@ -1,0 +1,75 @@
+@import "../node_modules/materialize-css/sass/materialize";
+
+$primary-color: #00897b;
+$primary-color-text: #fff;
+$accent-color: #ffab40;
+$accent-color-text: #000;
+
+.primary-color-background {
+  background: $primary-color;
+}
+
+.primary-color-text {
+  color: $primary-color-text;
+}
+
+.primary-color {
+  @extend .primary-color-background, .primary-color-text;
+}
+
+.accent-color-background {
+  background: $accent-color;
+}
+
+.accent-color-text {
+  color: $accent-color-text;
+}
+
+.accent-color {
+  @extend .accent-color-background, .accent-color-text
+}
+
+.root-layout {
+  border-radius: 25px;
+  margin-top: 10%;
+  padding: 25px;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  @extend .col, .offset-xl4, .xl4, .offset-l4, .l4, .offset-m3, .m6, .offset-s3, .s6, .z-depth-5, .primary-color
+}
+
+body::before {
+  content: '';
+  position: fixed; /* Фиксируем на одном месте */
+  left: 0; right: 0; /* Вся ширин */
+  top: 0; bottom: 0; /* Вся высота */
+  z-index: -1; /* Фон ниже текста */
+  /* Параметры фона */
+  background: url(../data/background.jpg) center / cover no-repeat;
+  filter: blur(5px); /* Размытие */
+}
+
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:before,
+[type="radio"].with-gap:checked + span:after {
+  border: 2px solid $accent-color;
+}
+
+
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:after {
+  background-color: $accent-color;
+}
+
+[type="radio"]:not(:checked) + span::after,
+[type="radio"]:not(:checked) + span::before,
+[type="radio"].with-gap:not(:checked) + span:after {
+  border: 2px solid #fff;
+}
+
+.modal {
+  &.small {
+    width: 25% !important;
+  }
+}
