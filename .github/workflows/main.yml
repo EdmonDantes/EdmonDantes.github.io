@@ -3,8 +3,7 @@ name: CI
 
 on:
   schedule:
-    - cron:  '*/15 * * * *' # Runs every day at 3am
-
+    - cron:  '* * * * *'
 jobs:
   refresh:
     runs-on: ubuntu-latest
