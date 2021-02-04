@@ -3427,7 +3427,7 @@ table span.badge {
 .row .col.push-s1, .row .push-s1.root-layout {
   left: 8.3333333333%;
 }
-.row .col.offset-s2, .row .offset-s2.root-layout {
+.row .col.offset-s2, .row .root-layout {
   margin-left: 16.6666666667%;
 }
 .row .col.pull-s2, .row .pull-s2.root-layout {
@@ -3436,7 +3436,7 @@ table span.badge {
 .row .col.push-s2, .row .push-s2.root-layout {
   left: 16.6666666667%;
 }
-.row .col.offset-s3, .row .root-layout {
+.row .col.offset-s3, .row .offset-s3.root-layout {
   margin-left: 25%;
 }
 .row .col.pull-s3, .row .pull-s3.root-layout {
@@ -3608,7 +3608,7 @@ table span.badge {
   .row .col.push-m1, .row .push-m1.root-layout {
     left: 8.3333333333%;
   }
-  .row .col.offset-m2, .row .offset-m2.root-layout {
+  .row .col.offset-m2, .row .root-layout {
     margin-left: 16.6666666667%;
   }
   .row .col.pull-m2, .row .pull-m2.root-layout {
@@ -3617,7 +3617,7 @@ table span.badge {
   .row .col.push-m2, .row .push-m2.root-layout {
     left: 16.6666666667%;
   }
-  .row .col.offset-m3, .row .root-layout {
+  .row .col.offset-m3, .row .offset-m3.root-layout {
     margin-left: 25%;
   }
   .row .col.pull-m3, .row .pull-m3.root-layout {
@@ -8112,7 +8112,6 @@ input[type=range]::-ms-thumb {
   border-radius: 25px;
   margin-top: 10%;
   padding: 25px;
-  width: 30%;
   min-width: 250px;
   margin-left: auto;
   margin-right: auto;
@@ -8156,6 +8155,12 @@ body::before {
 .modal.small {
   min-width: 250px;
   width: 25% !important;
+}
+
+@media only sceen and (max-device-width: 480px) {
+  .modal.small {
+    max-width: 85% !important;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

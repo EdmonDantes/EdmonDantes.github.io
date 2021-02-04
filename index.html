@@ -1,24 +1,12 @@
 <head>
     <meta charset="utf-8">
     <title>Знаменатель или числитель</title>
-
-
-    <!--	Material-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-
-    <!--	Work with date-->
-    <script type="text/javascript" src="data/date-ru-RU.js"></script>
-
-    <!--	Main script-->
-    <script type="text/javascript" src="js/index.js"></script>
-    <link rel="stylesheet" href="css/index.css"/>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-
-<div class="section root-layout">
+<div class="row">
+    <div class="section root-layout">
+        <div class="section"></div>
         <div class="container">
             <div class="container center">
                 <label for="start_date_input" class="flow-text primary-color">Начальная дата:</label>
@@ -45,7 +33,10 @@
                 <button id="execute_button" class="btn" onclick="start()">Рассчитать</button>
             </div>
         </div>
+
+        <div class="section"></div>
     </div>
+</div>
 
 <div id="date_error_dialog" class="modal">
     <div class="modal-content">
@@ -69,5 +60,15 @@
 </div>
 
 
+<!--	Material-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+
+<!--	Work with date-->
+<script type="text/javascript" src="data/date-ru-RU.js"></script>
+
+<!--	Main script-->
+<script type="text/javascript" src="js/index.js"></script>
+<link rel="stylesheet" href="css/index.css"/>
 <script type="text/javascript" src="js/materialize.min.js"></script>
+
 </body>

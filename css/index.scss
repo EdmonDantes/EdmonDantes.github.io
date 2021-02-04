@@ -33,14 +33,14 @@ $accent-color-text: #000;
   border-radius: 25px;
   margin-top: 10%;
   padding: 25px;
-  width: 30%;
   min-width: 250px;
   margin-left: auto;
   margin-right: auto;
-  @extend .col, .offset-xl4, .xl4, .offset-l4, .l4, .offset-m3, .m6, .offset-s3, .s6, .z-depth-5, .primary-color
+  @extend .col, .offset-xl4, .xl4, .offset-l4, .l4, .offset-m2, .m6, .offset-s2, .s6, .z-depth-5, .primary-color
 }
 
 body::before {
+  @extend .responsive-img;
   content: '';
   position: fixed; /* Фиксируем на одном месте */
   left: 0; right: 0; /* Вся ширин */
@@ -73,5 +73,13 @@ body::before {
   &.small {
     min-width: 250px;
     width: 25% !important;
+  }
+}
+
+@media only sceen and (max-device-width: 480px) {
+  .modal {
+    &.small {
+      max-width: 85% !important;
+    }
   }
 }
