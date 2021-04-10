@@ -8129,10 +8129,10 @@ body::before {
   /* Вся высота */
   z-index: -1;
   /* Фон ниже текста */
-  /* Параметры фона */
-  background: url(../data/background.jpg) center/cover no-repeat;
   filter: blur(5px);
   /* Размытие */
+  background: url(../data/background_480_320.jpg) center/cover no-repeat;
+  /* Параметры фона */
 }
 
 [type=radio]:checked + span:after,

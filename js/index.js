@@ -68,15 +68,94 @@ function start() {
 
 
 function setup() {
-    M.Datepicker.init(
-        document.getElementById('start_date_input'),
-        {format: "dd.mm.yyyy", autoClose: true, setDefaultDate: true, defaultDate: Date.parse("25.01.2021"), firstDay: 1, yearRange: 100}
-        );
+
+    let startDatePicker = document.getElementById('start_date_input');
+    let endDatePicker = document.getElementById('end_date_input');
+
+    let typeDatePicker1 = document.getElementById('radio_button_list_item_1');
+    let typeDatePicker2 = document.getElementById('radio_button_list_item_2');
+
+    const strCookie = document.cookie.split(';')
+    console.log(strCookie)
+    let cookies = {}
+    for (tmp of strCookie) {
+        let cur = tmp.split('=')
+        cookies[cur[0].trim()] = cur[1]
+
+    }
+
+    console.log(cookies)
+    if (cookies.savedStartDate) {
+        startDatePicker.value = cookies.savedStartDate
+
+    }
+    if (cookies.savedTypeData) {
+        if (cookies.savedTypeData === 'checked') {
+            typeDatePicker1.checked = true
+            typeDatePicker2.checked = false
+        } else {
+            typeDatePicker1.checked = false
+            typeDatePicker2.checked = true
+        }
+    }
 
     M.Datepicker.init(
-        document.getElementById('end_date_input'),
+        startDatePicker,
+        {format: "dd.mm.yyyy", autoClose: true, setDefaultDate: true, defaultDate: Date.parse(cookies.savedStartDate ? cookies.savedStartDate : "25.01.2021"), firstDay: 1, yearRange: 100}
+        );
+
+
+    M.Datepicker.init(
+        endDatePicker,
         {format: "dd.mm.yyyy", autoClose: true, setDefaultDate: true, defaultDate: Date.today(), firstDay: 1, yearRange: 100}
     )
+
+    startDatePicker.onchange = function (){
+        console.log(12)
+        document.cookie = "savedStartDate=" + startDatePicker.value
+    }
+
+    typeDatePicker2.onchange = typeDatePicker1.onchange = function() {
+        console.log(12)
+        document.cookie = "savedTypeData=" + (typeDatePicker1.checked ? "checked" : "not_checked")
+    }
+
+
+
+
+    // Set optimal background
+    const backgrounds = new Map([[480, "data/background_480_320.jpg"],
+        [720, "data/background_720_480.jpg"],
+        [1080,"data/background_1080_720.jpg"],
+        [1620, "data/background_1620_1080.jpg"],
+        [2430, "data/background_2430_1620.jpg"]
+    ])
+
+    const width = window.outerWidth
+
+    let found = null
+
+    for (w of backgrounds.keys()) {
+        if (width < w) {
+            found = w;
+            break
+        }
+    }
+
+    let backUrl
+
+    if (found) {
+        backUrl = 'url(\'' + backgrounds.get(found) + '\')'
+    } else {
+        backUrl = 'url(\'data/background.jpg\')'
+    }
+
+
+    var css = 'body:before { background: ' + backUrl + 'center/cover no-repeat }';
+    var style = document.createElement('style');
+    style.appendChild(document.createTextNode(css));
+
+    document.body.appendChild(style);
 }
 
 window.onload = setup

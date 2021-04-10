@@ -39,6 +39,30 @@ $accent-color-text: #000;
   @extend .col, .offset-xl4, .xl4, .offset-l4, .l4, .offset-m2, .m6, .offset-s2, .s6, .z-depth-5, .primary-color
 }
 
+@media only screen and (max-width: 480px) {
+  .xs_image {}
+}
+
+@media only screen and (max-width: 720px) {
+  .s_image {}
+}
+
+@media only screen and (max-width: 1080px) {
+  .l_image {}
+}
+
+@media only screen and (max-width: 1620px) {
+  .xl_image {}
+}
+
+@media only screen and (max-width: 2430px) {
+  .xll_image {}
+}
+
+@media only screen and (min-width: 2430px) {
+  .xlll_image {}
+}
+
 body::before {
   @extend .responsive-img;
   content: '';
@@ -46,9 +70,28 @@ body::before {
   left: 0; right: 0; /* Вся ширин */
   top: 0; bottom: 0; /* Вся высота */
   z-index: -1; /* Фон ниже текста */
-  /* Параметры фона */
-  background: url(../data/background.jpg) center / cover no-repeat;
   filter: blur(5px); /* Размытие */
+  background: url(../data/background_480_320.jpg) center / cover no-repeat;
+  /* Параметры фона */
+  //.xlll_image {
+  //  background: url(../data/background.jpg) center / cover no-repeat;
+  //}
+  //.xll_image {
+  //  background: url(../data/background_2430_1620.jpg) center / cover no-repeat;
+  //}
+  //.xl_image {
+  //  background: url(../data/background_1620_1080.jpg) center / cover no-repeat;
+  //}
+  //.l_image {
+  //  background: url(../data/background_1080_720.jpg) center / cover no-repeat;
+  //}
+  //.s_image {
+  //  background: url(../data/background_720_480.jpg) center / cover no-repeat;
+  //}
+  //.xs_image {
+
+  //}
+
 }
 
 [type="radio"]:checked + span:after,
